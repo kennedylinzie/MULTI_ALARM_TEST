@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
  public class MainActivity extends AppCompatActivity {
@@ -36,26 +37,44 @@ import java.util.List;
         btn_set_larm = findViewById(R.id.button);
         txt_timer = findViewById(R.id.textView);
 
-        btn_set_larm.setOnClickListener(view -> setAlarm(5));
+        btn_set_larm.setOnClickListener(view -> setAlarm(1));
 
     }
 
     public void setAlarm(int number){
 
         AlarmManager am  = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Calendar calendar = Calendar.getInstance();
-        List<Calendar> calendarList = new ArrayList<>();
+       // Calendar calendar = GregorianCalendar.getInstance();
+        GregorianCalendar calendar = new GregorianCalendar();
+        List<GregorianCalendar> calendarList = new ArrayList<>();
 
         for (int i = 0; i < number; i++) {
             calendarList.add(calendar);
         }
-        for (Calendar calendarItem:calendarList)
+        for (GregorianCalendar calendarItem:calendarList)
         {
             //each calender we will set alarm for it
-            calendarItem.add(Calendar.SECOND,10);
+            //calendarItem.add(Calendar.SECOND,10);
+            //each calender we will set alarm for it
+
+           // calendarItem.add("2022");
+            /*calendarItem.add(GregorianCalendar.MONTH,);
+            calendarItem.add(GregorianCalendar.DAY_OF_MONTH,11);*/
+            calendarItem.add(Calendar.HOUR, 9+3);
+            calendarItem.add(GregorianCalendar.MINUTE, Integer.parseInt("0"));
+            calendarItem.add(GregorianCalendar.SECOND,Integer.parseInt("0"));
+
+            String Y =  calendarItem.get(GregorianCalendar.YEAR) + "";
+            String M = calendarItem.get(GregorianCalendar.MONTH) + "";
+            String D = calendarItem.get(GregorianCalendar.DAY_OF_MONTH)+"";
+            String h_ =  calendarItem.get(GregorianCalendar.HOUR) + "";
+            String m_ = calendarItem.get(GregorianCalendar.MINUTE) + "";
+            String s_ = calendarItem.get(GregorianCalendar.SECOND)+"";
+            String name = Y+" : "+M+" : "+D+" : "+h_+" : "+m_+" : "+s_;
+            Toast.makeText(this, name+" ", Toast.LENGTH_SHORT).show();
 
 
-            int requestCode  = (int) calendar.getTimeInMillis()/1000;
+            int requestCode  = (int) GregorianCalendar.getInstance().getTimeInMillis()/1000;
             Intent intent = new Intent(this,MyAlarmReceiver.class);
             intent.putExtra("REQUEST_CODE",requestCode);
             intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
