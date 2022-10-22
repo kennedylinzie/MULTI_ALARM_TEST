@@ -87,13 +87,13 @@ public class MainActivity extends AppCompatActivity {
                 setAlarm(1,9,3);
                 setAlarm(1,9,4);
                 setAlarm(1,9,5);*/
-                setAlarm(1,2022,10,7,16,32,0);
-                setAlarm(1,2022,10,7,16,33,0);
-                setAlarm(1,2022,10,7,16,34,0);
-                setAlarm(1,2022,10,7,16,35,0);
-                setAlarm(1,2022,10,7,16,36,0);
-                setAlarm(1,2022,10,7,16,37,0);
-                setAlarm(1,2022,10,7,16,38,0);
+                setAlarm(2022,10,7,21,23,0);
+                setAlarm(2022,10,7,21,24,0);
+                setAlarm(2022,10,7,21,25,0);
+                setAlarm(2022,10,7,21,26,0);///
+                setAlarm(2022,10,7,21,27,0);
+                setAlarm(2022,10,7,21,28,0);
+                setAlarm(2022,10,7,21,29,0);
 
             }
         });
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
     PendingIntent pi;
     Intent intent;
     @SuppressLint("UnspecifiedImmutableFlag")
-    public void setAlarm(int number,int Y_set,int M_set,int D_set,int h_set,int m_set,int s_set){
+    public void setAlarm(int Y_set,int M_set,int D_set,int h_set,int m_set,int s_set){
 
 
 
@@ -117,9 +117,9 @@ public class MainActivity extends AppCompatActivity {
         // calendar.set(Calendar.MINUTE,0);
         calendar.set(Y_set,M_set-1,D_set,h_set,m_set,s_set);
 
-        for (int i = 0; i < number; i++) {
+
             calendarList.add(calendar);
-        }
+
         for (Calendar calendarItem:calendarList)
         {
             //each calender we will set alarm for it
@@ -137,8 +137,8 @@ public class MainActivity extends AppCompatActivity {
             String m_ = calendarItem.get(Calendar.MINUTE) + "";
             String s_ = calendarItem.get(Calendar.SECOND)+"";
             String name = Y+" : "+M+" : "+D+" : "+h_+" : "+m_+" : "+s_;
-            String code = Y+""+M+""+D+""+h_+""+m_+""+s_;
-           String String = java.lang.String.valueOf(calendarItem.getTime());
+            String code = Y+""+M+""+D+""+h_;
+            String String = java.lang.String.valueOf(calendarItem.getTime());
             Toast.makeText(this, name+" ", Toast.LENGTH_SHORT).show();
 
 
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("UnspecifiedImmutableFlag")
     public void cancel_alarm(View view) {
-        pi = PendingIntent.getBroadcast(this, 91, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        pi = PendingIntent.getBroadcast(this, 9717280, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         if(pi != null) {
             alarmManager.cancel(pi);
